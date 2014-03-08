@@ -2,29 +2,42 @@
 
 # Node JSON Database #
 
-Node实现的JSON数据库，API是MongoDB的子集。
+Node实现的JSON数据库，API是MongoDB的子集。数据库的存储方式是一个目录，集合为其子目录，集合目录下JSON格式的文件作为数据文档。采用组合和装饰的模式对[NeDB (Node embedded database)](https://github.com/louischatriot/nedb)进行包装。
 
-## 新手上路
+## 安装和使用
 
-> 试验阶段，不发布为NPM包，也不发布为Bower包。暂时使用内部Bower的方式使用。
+### 安装 ###
 
-在命令行中，使用`npm install njdb`命令安装模块。
+NPM模块名是njdb。
+	
+	npm install njdb --save   // Put latest version in your package.json
+	npm test   // You'll need the dev dependencies to test it
+
+### 使用 ###
 
 	var njdb = require('njdb');
-	var db = new njdb.NodeJsonDB();
+	var options = { db: database, ready: test_callback };
+    new njdb.NodeJsonDB(options);
 
-## 文档
+**必备的配置选项**
 
-## 设计需求 ##
+1. db：数据库的存储目录。
+2. ready：数据库加载完毕后执行的回调函数`function(err, db){}`。第1个参数是错误对象，第2个参数是加载成功后的数据库对象。
 
-1. API是MongoDB的子集。
-2. 存储方式为数据库是一个目录，集合为子目录，文档是集合目录下JSON格式的文件。
+## API
 
-## 设计方案 ##
+当前的API包装实现了[NeDB (Node embedded database)](https://github.com/louischatriot/nedb)项目README.md文档的`Finding documents`部分。
 
-当前采用组合装饰[NeDB (Node embedded database)](https://github.com/louischatriot/nedb)的方式实现。
+NeDB是单集合数据库，文档中的`db.find()`对应NjDB的`db.collection.find()`。
 
-## 范例
+检索`books`集合全部文档的回调函数，示例如下：
+
+	function(err, db){
+		db.books.find({}, function(err, docs){
+		});
+	}
+
+参见：[doc/nedb/README.md](./doc/nedb/README.md)
 
 ## 版本历史
 

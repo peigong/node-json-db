@@ -4,6 +4,19 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    copy: {
+      doc: {
+        files: [ 
+          {
+            expand: true,
+            cwd: 'node_modules/nedb',
+            src: ['README.md'],
+            dest: 'doc/nedb'
+          }
+        ]
+      }
+    },
     nodeunit: {
       files: ['test/**/*_test.js'],
     },
@@ -41,7 +54,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['copy', 'jshint', 'nodeunit']);
 };

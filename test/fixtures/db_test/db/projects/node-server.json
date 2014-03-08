@@ -1,4 +1,4 @@
 {
     "name": "node-server",
-    "description": "Node.js的WEB服务器框架。"
+    "description": "Web server for Node.js"
 }
