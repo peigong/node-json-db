@@ -26,7 +26,7 @@ NPM模块名是njdb。
 
 ## API
 
-当前的API包装实现了[NeDB (Node embedded database)](https://github.com/louischatriot/nedb)项目README.md文档的`Finding documents`部分。
+当前的API包装实现了[NeDB (Node embedded database)](https://github.com/louischatriot/nedb)项目README.md文档的`Finding documents`和`Inserting documents`部分。
 
 NeDB是单集合数据库，文档中的`db.find()`对应NjDB的`db.collection.find()`。
 
