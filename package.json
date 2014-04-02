@@ -20,7 +20,7 @@
       "url": "https://github.com/toolkit-rack/node-json-db/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/njdb",
+  "main": "index",
   "engines": {
     "node": ">= 0.8.0"
   },

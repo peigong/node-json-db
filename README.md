@@ -42,6 +42,8 @@ NeDB是单集合数据库，文档中的`db.find()`对应NjDB的`db.collection.f
 ## 版本历史
 
 1. 0.1.0：实现基本的数据库查询功能。
+2. 0.1.1：增加了Insert实现。
+3. 0.1.2：增加了Helper工具和findOne实现。
 
 ## 许可
 

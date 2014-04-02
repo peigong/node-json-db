@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var async = require('async');
 
-var njdb = require('../lib/njdb.js');
+var NodeJsonDB = require('../lib/njdb.js');
 //var logger = require('../lib/logger.js');
 
 /*
@@ -34,7 +34,7 @@ exports['database'] = {
     done();
   },
   initialise: function(test) {
-    test.expect(7);
+    test.expect(8);
     function test_callback(err, db){
       async.parallel([
         function(callback){
@@ -68,13 +68,19 @@ exports['database'] = {
             test.equal(docs[0].name, 'node.js', '验证降序排列的第1条测试数据。');
             callback(null);
           });
+        },
+        function(callback){
+          db.books.findOne({"name": "node.js"}, function(err, doc){
+            test.equal(doc.pages, '3333', '验证检索出正确的记录');
+            callback(null);
+          });
         }
       ], function(){
         test.done();
       });
     }
 
-    new njdb.NodeJsonDB({ db: database, ready: test_callback });
+    new NodeJsonDB({ db: database, ready: test_callback });
   },
 
   insert: function(test){
@@ -113,6 +119,6 @@ exports['database'] = {
         test.done();
       });
     }
-    new njdb.NodeJsonDB({ db: database, ready: test_callback });
+    new NodeJsonDB({ db: database, ready: test_callback });
   }
 };
